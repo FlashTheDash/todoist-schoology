@@ -1,4 +1,4 @@
-import todoist
+from pytodoist import todoist
 import requests
 from requests_oauthlib import OAuth1
 import datetime
@@ -42,4 +42,25 @@ def get_events():
     return events
 
 
-# docs: https://developer.todoist.com/#read-resources
+def check_task(task_to_check):
+    '''
+    returns True if the given task is already in todoist, else False
+    '''
+    user = todoist.login(credentials.todoist_username, credentials.todoist_password)
+    project = user.get_project('School')
+    tasks = []
+    for task in project.get_tasks():
+        tasks.append(task.content)
+    if task_to_check in tasks:
+        return True
+    else:
+        return False
+
+
+def add_task(name, date, project_name='School'):
+    '''
+    adds a task to the specified todoist project
+    '''
+    user = todoist.login(credentials.todoist_username, credentials.todoist_password)
+    project = user.get_project(project_name)
+    project.add_task(name, date)
