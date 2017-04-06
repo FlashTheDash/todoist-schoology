@@ -64,3 +64,16 @@ def add_task(name, date, project_name='School'):
     user = todoist.login(credentials.todoist_username, credentials.todoist_password)
     project = user.get_project(project_name)
     project.add_task(name, date)
+
+
+def update_tasks():
+    events = get_events()
+    for event in events:
+        if not check_task(event.name):
+            add_task(event.name, event.date)
+
+
+if __name__ == "__main__":
+    print('starting...')
+    update_tasks()
+    print('done...')
