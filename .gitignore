@@ -1,3 +1,6 @@
+# so my api credentials don't get put in the repo
+credentials.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
