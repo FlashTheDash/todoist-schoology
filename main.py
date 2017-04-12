@@ -42,11 +42,10 @@ def get_events():
     return events
 
 
-def check_task(task_to_check, project_name='School'):
+def check_task(user, task_to_check, project_name='School'):
     '''
     returns True if the given task is already in todoist, else False
     '''
-    user = todoist.login(credentials.todoist_username, credentials.todoist_password)
     project = user.get_project(project_name)
     tasks = []
     for task in project.get_tasks():
@@ -57,20 +56,20 @@ def check_task(task_to_check, project_name='School'):
         return False
 
 
-def add_task(name, date, project_name='School'):
+def add_task(user, name, date, project_name='School'):
     '''
     adds a task to the specified todoist project
     '''
-    user = todoist.login(credentials.todoist_username, credentials.todoist_password)
     project = user.get_project(project_name)
     project.add_task(name, date)
 
 
 def update_tasks():
+    user = todoist.login(credentials.todoist_username, credentials.todoist_password)
     events = get_events()
     for event in events:
-        if not check_task(event.name):
-            add_task(event.name, event.date)
+        if not check_task(user, event.name):
+            add_task(user, event.name, event.date)
 
 
 if __name__ == "__main__":
