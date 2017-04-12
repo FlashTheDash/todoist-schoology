@@ -42,12 +42,12 @@ def get_events():
     return events
 
 
-def check_task(task_to_check):
+def check_task(task_to_check, project_name='School'):
     '''
     returns True if the given task is already in todoist, else False
     '''
     user = todoist.login(credentials.todoist_username, credentials.todoist_password)
-    project = user.get_project('School')
+    project = user.get_project(project_name)
     tasks = []
     for task in project.get_tasks():
         tasks.append(task.content)
