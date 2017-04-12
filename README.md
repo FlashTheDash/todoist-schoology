@@ -7,4 +7,5 @@ I used the [requests](https://github.com/kennethreitz/requests) library to make 
 
 ## Note:
 The todoist api gets offended if you run the script too quickly after you just ran it. This shouldn't be an issue for normal use, however.
+
 If you want something like this, but for Apple reminders, then you should check [this](https://github.com/PostsDesert/SiRI) out.
