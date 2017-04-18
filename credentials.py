@@ -1,0 +1,5 @@
+schoology_user_id = ''
+schoology_client_key = ''
+schoology_client_secret = ''
+todoist_username = ''
+todoist_password = ''
