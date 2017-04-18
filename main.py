@@ -42,15 +42,12 @@ def get_events():
     return events
 
 
-def check_task(user, task_to_check, project_name='School'):
+def check_task(user, task_to_check, added_tasks, project_name='School'):
     '''
     returns True if the given task is already in todoist, else False
     '''
     project = user.get_project(project_name)
-    tasks = []
-    for task in project.get_tasks():
-        tasks.append(task.content)
-    if task_to_check in tasks:
+    if task_to_check in added_tasks:
         return True
     else:
         return False
@@ -64,12 +61,20 @@ def add_task(user, name, date, project_name='School'):
     project.add_task(name, date)
 
 
-def update_tasks():
+def update_tasks(project_name='School'):
+    # get all future events from schoology
+    new_events = get_events()
+
+    # git all tasks that have ever been completed in todoist
     user = todoist.login(credentials.todoist_username, credentials.todoist_password)
-    events = get_events()
-    for event in events:
-        if not check_task(user, event.name):
-            add_task(user, event.name, event.date)
+    project = user.get_project(project_name)
+    added_tasks = [task.content for task in project.get_completed_tasks() + project.get_tasks()]
+
+    # checks if each future task is in the list of previous tasks
+    # this is pretty inefficient, but I don't have that many tasks in todoist
+    for event in new_events:
+        if not check_task(user, event.name, added_tasks):
+            project.add_task(event.name, event.date)
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 # todoist-schoology
 I'm integrating the schoology calendar with todoist
+This **ONLY** works with accounts that have todoist premium.
 
 ## There's more explanation to come, but here's some info:
 I used [this library](https://github.com/Garee/PyTodoist) to interface with todoist; the official todoist library was acting weird.
