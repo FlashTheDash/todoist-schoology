@@ -3,7 +3,7 @@ oauthlib==2.0.2
 packaging==16.8
 pyparsing==2.2.0
 pytodoist==2.1.0
-requests==2.20.0
+requests==2.31.0
 requests-oauthlib==0.8.0
 six==1.10.0
 todoist-python==7.0.14
